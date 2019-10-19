@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Verification</title>
+</head>
+<body>
+<form method="post">
+	{% csrf_token %}
+	{{form.as_p}}
+	<a href="{% url 'otp' %}"><button type="button" onclick class="btn btn-dark">Verify</button></a>
+</form>
+</body>
+</html>
