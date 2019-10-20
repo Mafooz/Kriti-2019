@@ -1,13 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Verification</title>
-</head>
-<body>
-<form method="post">
-	{% csrf_token %}
-	{{form.as_p}}
-	<a href="{% url 'otp' %}"><button type="button" onclick class="btn btn-dark">Verify</button></a>
-</form>
-</body>
-</html>
+
+{%extends 'base.html'%}
+{%block content%}
+	<h1 style="font-family:'Eagle-Lake' ; font-size:100px;text-align:center; height:120px; color:white">E-Learn</h1>
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">VERIFICATION</h3>
+          <form method="post" novalidate>
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary btn-block">Send OTP</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endblock%}
