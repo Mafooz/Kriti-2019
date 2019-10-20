@@ -7,16 +7,17 @@ import time
 secret_key=b'12345678901234567890'
 now=int(time.time())
 
-otp=int(0)
 def otp(request):
-	print(otp)
+	if request.session['otp']==0:
+		return redirect('verifyourself')
+
 	if request.method=='POST':
 		form=OtpForm(request.POST)
 		if form.is_valid():
 			var=form.cleaned_data['otp']
-			print(var)
-			return render(request,'check.html',{'otp':otp})
-			if var==otp:
+			if var==request.session['0'] :
+				request.session['otp']=0
+				request.session['books']=1
 				return redirect('bookupload')
 			else:
 				form=OtpForm()
@@ -38,6 +39,9 @@ def verifyourself(request):
 				[email],
 				fail_silently=False,
 			)
+			request.session['0']=var
+			request.session['otp']=1
+			request.session['books']=0
 			return redirect('otp')	
 	else:
 		form=VerifyForm()
